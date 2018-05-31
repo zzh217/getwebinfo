@@ -138,11 +138,13 @@ banner = '''````````````````````````````````````````````````````````````````````
 
 #read csv
 
-url=raw_input('input url:')
+url='http://dir.twseo.org/ip-query3.php'
+urll=raw_input('input domain:')
 print(Colors.ORANGE+banner+Colors.DEFAULT)
-datas = {'inputip':'www.cya.gov.tw'}
+datas = {'inputip':urll}
 r = requests.post(url,data = datas)
 req=r.content.decode('utf-8','ignore')
+print(req)
 matchObj = re.search('IP:.*?IP', req, re.M|re.I).group(0).replace('</font><br>IP','').replace('IP: <font color=#ff6600>','IP:')
 matchObj2 = re.search(': <img.*?ISP', req, re.M|re.I).group(0).replace(': <img src="images/flags/tw.gif" height="12" width="18"> <font color=#ff6600>','region:').replace('</font><br>ISP','')
 matchObj3 = re.search(u'\u4f86\u6e90:.*?IP', req, re.M|re.I).group(0).replace(u'\u4f86\u6e90'+': <font color=#ff6600>','ISP From:').replace('</font><br>IP','')
